@@ -2196,14 +2196,13 @@ function _relayout(gd, aobj) {
             else flags.doplot = true;
         }
         else {
-            var pp1 = String(p.parts[1] || '');
             // check whether we can short-circuit a full redraw
-            // 3d or geo at this point just needs to redraw.
+            var pp1 = String(p.parts[1] || '');
+
             if(proot.indexOf('scene') === 0) {
                 if(p.parts[1] === 'camera') flags.docamera = true;
                 else flags.doplot = true;
             }
-            else if(proot.indexOf('geo') === 0) flags.doplot = true;
             else if(proot.indexOf('ternary') === 0) flags.doplot = true;
             else if(ai === 'paper_bgcolor') flags.doplot = true;
             else if(proot === 'margin' ||
