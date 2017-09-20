@@ -58,8 +58,6 @@ function Geo(opts) {
     this.bounds = null;
     this.midPt = null;
 
-    this.hasChoropleth = false;
-
     this.traceHash = {};
     this.layers = {};
     this.basePaths = {};
@@ -131,15 +129,6 @@ proto.fetchTopojson = function() {
 
 proto.update = function(geoCalcData, fullLayout) {
     var geoLayout = fullLayout[this.id];
-
-    // important: maps with choropleth traces have a different layer order
-    this.hasChoropleth = false;
-    for(var i = 0; i < geoCalcData.length; i++) {
-        if(geoCalcData[i][0].trace.type === 'choropleth') {
-            this.hasChoropleth = true;
-            break;
-        }
-    }
 
     this.updateProjection(fullLayout, geoLayout);
     this.updateBaseLayers(fullLayout, geoLayout);
@@ -245,11 +234,7 @@ proto.updateBaseLayers = function(fullLayout, geoLayout) {
         );
     }
 
-    var allLayers = this.hasChoropleth ?
-        constants.layersForChoropleth :
-        constants.layers;
-
-    var layerData = allLayers.filter(function(d) {
+    var layerData = constants.layers.filter(function(d) {
         return isTopoLayer(d) ? geoLayout['show' + d] :
             isAxisLayer(d) ? geoLayout[d].showgrid :
             true;

@@ -135,25 +135,18 @@ params.fillLayers = ['ocean', 'land', 'lakes'];
 // base layer with a only a line color
 params.lineLayers = ['subunits', 'countries', 'coastlines', 'rivers', 'frame'];
 
+// base layer order
 params.layers = [
     'bg',
-    'ocean', 'land', 'lakes',
-    'subunits', 'countries', 'coastlines', 'rivers',
-    'lataxis', 'lonaxis', 'frame',
-    'backplot',
-    'frontplot'
-];
-
-params.layersForChoropleth = [
-    'bg',
     'ocean', 'land',
+    'backplot',
+    'lakes', 'rivers',
     'subunits', 'countries', 'coastlines',
     'lataxis', 'lonaxis', 'frame',
-    'backplot',
-    'rivers', 'lakes',
     'frontplot'
 ];
 
+// adjectives as in 'countrycolor', 'coastlinewidth', etc.
 params.layerNameToAdjective = {
     ocean: 'ocean',
     land: 'land',
